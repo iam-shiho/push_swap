@@ -6,13 +6,13 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 19:29:07 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/05 19:36:13 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/05 21:35:42 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 //使用回数をreturnするべきか否か
-int	sa_move(t_list **stack_a)
+void	swap(struct *number)
 {
 	t_list	*first;
 	t_list	*second;
