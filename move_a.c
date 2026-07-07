@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 19:29:07 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/07 15:08:04 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/07 17:53:21 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,43 @@ void	lst_swapfirst(struct t_num **stack_a, struct t_num **stack_b)
 	b_second->prev = *stack_b;
 }
 
-//すべての要素を1つ上にシフトする
+//すべての要素を1つ上にシフトする　前から1つずつインデックスをつけるなら他に作業を付け足さないとかも
 void	lst_pushup(struct t_num **stack_a)
 {
-	t_num	*a_first;
-	t_num	*b_first;
-	t_num	*a_second;
-	t_num	*b_second;
+	t_num	*first;
+	t_num	*second;
+	t_num	*last;
 
 	if (!*stack_a || !stack_a)
 		// (*stack_a)->next == NULL
 		return ;
-	//一番先頭を先に最後に移動させる？
-	while (stack_a != NULL)
-	{
-		
-	}
+	first = *stack_a; //
+	second = first->next;
+	last = ft_lstlast(*stack_a);
+	ft_lstadd_back(*stack_a, first); //最上要素は一番下に移動
+	second->prev = NULL;
+	first->next = NULL;
+	last->next = first;
+	first->prev = last;
+}
+
+//すべての要素を1つ下にシフトする
+void	lst_pushdown(struct t_num **stack_a)
+{
+	t_num	*first;
+	t_num	*last_second;
+	t_num	*last;
+
+	if (!*stack_a || !stack_a)
+		// (*stack_a)->next == NULL
+		return ;
+	last = ft_lstlast(*stack_a); //各アドレスを保持
+	first = *stack_a;
+	last_second = last->prev;
+	ft_lstadd_front(*stack_a, last);//一番先頭に一番最後を持ってくる
+	last->next = first;//一番目の次を元一番目に変更
+	last->prev = NULL;//先頭になったから一個前のアドレスをNULL
+	first->prev = last;//一個前に追加されたからアドレスを追加
+	last_second->next = NULL;//最後の構造体なのでNULL
+	*stack_a = last;//先頭アドレスを更新
 }
