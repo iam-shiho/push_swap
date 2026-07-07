@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_command.c                                        :+:      :+:    :+:   */
+/*   hex.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/07 18:06:07 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/07 18:42:20 by swaragay         ###   ########.fr       */
+/*   Created: 2026/06/04 15:45:14 by swaragay          #+#    #+#             */
+/*   Updated: 2026/07/07 18:51:19 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "push_swap.h"
 
-void	pa(t_num **stack_a, t_num **stack_b, t_bench *bench)
+int	ft_puthex(unsigned long num, const char *format)
 {
-	if (!*stack_a || !stack_a || !*stack_b || !stack_b)
-		return ;
-	lst_swapfirst(**stack_a, **stack_b);
-	ft_printf("pa");
-	++bench->pa;
-}
+	int		count;
+	char	res;
 
-void	pb(t_num **stack_a, t_num **stack_b, t_bench *bench)
-{
-	if (!*stack_a || !stack_a || !*stack_b || !stack_b)
-		return ;
-	lst_swapfirst(**stack_b, **stack_a);
-	ft_printf("pb");
-	++bench->pb;
+	count = 0;
+	if (num >= 16)
+		count += ft_puthex(num / 16, format);
+	num = num % 16;
+	if (num >= 10 && (*format == 'x' || *format == 'p'))
+		res = (num - 10) + 'a';
+	else if (num >= 10 && *format == 'X')
+		res = (num - 10) + 'A';
+	else
+		res = num + '0';
+	count += write(1, &res, 1);
+	return (count);
 }

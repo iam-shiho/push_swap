@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 18:09:54 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/07 18:26:29 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/07 18:45:16 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,29 @@
 
 void	ra(t_num **stack_a, t_bench *bench)
 {
-	int	tmp;
-
-	tmp = lst_pushup(**stack_a);
-	if (tmp == 0)
+	if (!*stack_a || !stack_a)
 		return ;
+	lst_pushup(**stack_a);
 	ft_printf("ra");
 	++bench->ra;
 }
 
 void	rb(t_num **stack_b, t_bench *bench)
 {
-	int	tmp;
-
-	tmp = lst_pushup(**stack_b);
-	if (tmp == 0)
+	if (!*stack_b || !stack_b)
 		return ;
+	lst_pushup(**stack_b);
 	ft_printf("rb");
 	++bench->rb;
 }
 
 void	rr(t_num **stack_a, t_num **stack_b, t_bench *bench)
 {
-	int tmp;
-	tmp = ra(*stack_a, bench);
-	if (tmp == 1)
+	if (!*stack_a || !stack_a || !*stack_b || !stack_b)
+		return ;
+	ra(*stack_a, bench);
 	rb(*stack_b, bench);
+	ft_printf("rr");
+	++bench->rr;
 }
+// if文の条件文を足して、実行するかしないか判断する
