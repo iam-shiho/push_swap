@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 18:09:54 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/07 18:45:16 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/07 20:49:28 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,4 @@ void	rr(t_num **stack_a, t_num **stack_b, t_bench *bench)
 	++bench->rr;
 }
 // if文の条件文を足して、実行するかしないか判断する
+

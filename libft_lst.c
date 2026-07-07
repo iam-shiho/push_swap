@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 15:28:37 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/07 18:12:20 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/07 20:57:37 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //構造体リストの最後
 t_num	*ft_lstlast(t_num **stack_a)
 {
-	if (!*stack_a || !stack_a)
+	if (!stack_a || !*stack_a)
 		return (NULL);
 	while ((*stack_a)->next != NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 19:29:07 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/07 18:47:49 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/07 20:56:59 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	lst_swaptop(t_num **stack_a)
 	t_num	*second;
 	t_num	*third;
 
-	if (!*stack_a || !stack_a || !(*stack_a)->next)
+	if (!stack_a || !*stack_a || !(*stack_a)->next)
 		return ;
 	first = *stack_a;       // stack_aの一番先頭のアドレスを代入
 	second = first->next;   //二番目の要素の構造体のアドレスを代入
@@ -39,7 +39,7 @@ void	lst_swapfirst(t_num **stack_a, t_num **stack_b)
 	t_num	*a_second;
 	t_num	*b_second;
 
-	if (!*stack_a || !stack_a || !*stack_b || !stack_b)
+	if (!stack_a || !stack_b || !*stack_a || !*stack_b)
 		return ;
 	a_first = *stack_a; // 一番先頭のアドレスを代入
 	b_first = *stack_b;

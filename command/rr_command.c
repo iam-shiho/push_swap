@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 18:24:10 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/07 18:47:07 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/07 20:52:25 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,4 @@ void	rrr(t_num **stack_a, t_num **stack_b, t_bench *bench)
 	ft_printf("rrr");
 	++bench->rrr;
 }
+
