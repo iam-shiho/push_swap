@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_a.c                                           :+:      :+:    :+:   */
+/*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 19:29:07 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/07 17:53:21 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/07 18:15:47 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 //上2つの要素を入れ替える
-void	lst_swaptop(struct t_num **stack_a)
+int	lst_swaptop(t_num **stack_a)
 {
 	t_num	*first;
 	t_num	*second;
 	t_num	*third;
 
-	if (!*stack_a || !stack_a) // (*stack_a)->next == NULL
-		return ;
+	if (!*stack_a || !stack_a || !(*stack_a)->next)
+		return (0);
 	first = *stack_a;       // stack_aの一番先頭のアドレスを代入
 	second = first->next;   //二番目の要素の構造体のアドレスを代入
 	third = second->next;   // 3つ目の要素のアドレスを代入
@@ -29,19 +29,20 @@ void	lst_swaptop(struct t_num **stack_a)
 	*stack_a = second;      //先頭アドレスを二番目の構造体にする 2→1→3
 	first->prev = *stack_a; //一個前のアドレスの更新
 	third->prev = first;    // 3つ目の一個まえのアドレスを更新
+	return (1);
 }
 
 // abの最上要素を入れ替える
-void	lst_swapfirst(struct t_num **stack_a, struct t_num **stack_b)
+int	lst_swapfirst(t_num **stack_a, t_num **stack_b)
 {
 	t_num	*a_first;
 	t_num	*b_first;
 	t_num	*a_second;
 	t_num	*b_second;
 
-	if (!*stack_a || !stack_a || !*stack_b || !stack_b)
-		// (*stack_a)->next == NULL
-		return ;
+	if (!*stack_a || !stack_a || !(*stack_a)->next || !*stack_b || !stack_b
+		|| !(*stack_b)->next)
+		return (0);
 	a_first = *stack_a; // 一番先頭のアドレスを代入
 	b_first = *stack_b;
 	a_second = a_first->next; // 二番目のアドレスを保持
@@ -52,19 +53,19 @@ void	lst_swapfirst(struct t_num **stack_a, struct t_num **stack_b)
 	*stack_b = a_first;
 	a_second->prev = *stack_a; //二個目の1つ前のアドレスを更新
 	b_second->prev = *stack_b;
+	return (1);
 }
 
 //すべての要素を1つ上にシフトする　前から1つずつインデックスをつけるなら他に作業を付け足さないとかも
-void	lst_pushup(struct t_num **stack_a)
+int	lst_pushup(t_num **stack_a)
 {
 	t_num	*first;
 	t_num	*second;
 	t_num	*last;
 
-	if (!*stack_a || !stack_a)
-		// (*stack_a)->next == NULL
-		return ;
-	first = *stack_a; //
+	if (!*stack_a || !stack_a || !(*stack_a)->next)
+		return (0);
+	first = *stack_a;
 	second = first->next;
 	last = ft_lstlast(*stack_a);
 	ft_lstadd_back(*stack_a, first); //最上要素は一番下に移動
@@ -72,25 +73,26 @@ void	lst_pushup(struct t_num **stack_a)
 	first->next = NULL;
 	last->next = first;
 	first->prev = last;
+	return (1);
 }
 
 //すべての要素を1つ下にシフトする
-void	lst_pushdown(struct t_num **stack_a)
+int	lst_pushdown(t_num **stack_a)
 {
 	t_num	*first;
 	t_num	*last_second;
 	t_num	*last;
 
-	if (!*stack_a || !stack_a)
-		// (*stack_a)->next == NULL
-		return ;
+	if (!*stack_a || !stack_a || !(*stack_a)->next)
+		return (0);
 	last = ft_lstlast(*stack_a); //各アドレスを保持
 	first = *stack_a;
 	last_second = last->prev;
-	ft_lstadd_front(*stack_a, last);//一番先頭に一番最後を持ってくる
-	last->next = first;//一番目の次を元一番目に変更
-	last->prev = NULL;//先頭になったから一個前のアドレスをNULL
-	first->prev = last;//一個前に追加されたからアドレスを追加
-	last_second->next = NULL;//最後の構造体なのでNULL
-	*stack_a = last;//先頭アドレスを更新
+	ft_lstadd_front(*stack_a, last); //一番先頭に一番最後を持ってくる
+	last->next = first;              //一番目の次を元一番目に変更
+	last->prev = NULL;               //先頭になったから一個前のアドレスをNULL
+	first->prev = last;              //一個前に追加されたからアドレスを追加
+	last_second->next = NULL;        //最後の構造体なのでNULL
+	*stack_a = last;                 //先頭アドレスを更新
+	return(1);
 }
