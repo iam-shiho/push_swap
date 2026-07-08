@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 19:29:07 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/07 20:56:59 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/08 17:00:36 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,24 @@ void	lst_swaptop(t_num **stack_a)
 	third->prev = first;    // 3つ目の一個まえのアドレスを更新
 }
 
-// abの最上要素を入れ替える
-void	lst_swapfirst(t_num **stack_a, t_num **stack_b)
+// 最上要素を
+void	lst_movefirst(t_num **stack_a, t_num **stack_b)
 {
 	t_num	*a_first;
 	t_num	*b_first;
 	t_num	*a_second;
-	t_num	*b_second;
 
 	if (!stack_a || !stack_b || !*stack_a || !*stack_b)
 		return ;
 	a_first = *stack_a; // 一番先頭のアドレスを代入
 	b_first = *stack_b;
 	a_second = a_first->next; // 二番目のアドレスを保持
-	b_second = b_first->next;
-	a_first->next = b_second; // 1つ次のアドレスを代入　a→b b→a
-	b_first->next = a_second;
-	*stack_a = b_first; //先頭アドレスの更新
+	a_first->next = b_first;  // 1つ次のアドレスを代入　a→b b→a
+	b_first->prev = a_first;
+	*stack_a = a_second; //先頭アドレスの更新
 	*stack_b = a_first;
-	a_second->prev = *stack_a; //二個目の1つ前のアドレスを更新
-	b_second->prev = *stack_b;
+	a_second->prev = NULL; //二個目の1つ前のアドレスを更新
+	b_first->prev = *stack_b;
 }
 
 //すべての要素を1つ上にシフトする　前から1つずつインデックスをつけるなら他に作業を付け足さないとかも
@@ -60,7 +58,7 @@ void	lst_pushup(t_num **stack_a)
 	t_num	*second;
 	t_num	*last;
 
-	if (!*stack_a || !stack_a)
+	if (!stack_a || !*stack_a)
 		return ;
 	first = *stack_a;
 	second = first->next;
@@ -79,7 +77,7 @@ void	lst_pushdown(t_num **stack_a)
 	t_num	*last_second;
 	t_num	*last;
 
-	if (!*stack_a || !stack_a)
+	if (!stack_a || !*stack_a)
 		return ;
 	last = ft_lstlast(*stack_a); //各アドレスを保持
 	first = *stack_a;
