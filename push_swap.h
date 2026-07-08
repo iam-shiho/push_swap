@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 18:27:40 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/08 13:14:04 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/08 18:54:21 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 //数字をまとめる構造体
 typedef struct s_list
 {
-	struct num_list		*num; //数字の構造体が入る
+	struct t_num		*num; //数字の構造体が入る
 	struct bench_list	*bench;
 }						t_list;
 

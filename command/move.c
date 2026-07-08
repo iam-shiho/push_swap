@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 19:29:07 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/08 17:00:36 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/08 18:53:50 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,12 @@ void	lst_pushup(t_num **stack_a)
 	first = *stack_a;
 	second = first->next;
 	last = ft_lstlast(*stack_a);
-	ft_lstadd_back(*stack_a, first); //最上要素は一番下に移動
+	last->next = first;
 	second->prev = NULL;
 	first->next = NULL;
 	last->next = first;
 	first->prev = last;
+	*stack_a = second;
 }
 
 //すべての要素を1つ下にシフトする
@@ -82,10 +83,21 @@ void	lst_pushdown(t_num **stack_a)
 	last = ft_lstlast(*stack_a); //各アドレスを保持
 	first = *stack_a;
 	last_second = last->prev;
-	ft_lstadd_front(*stack_a, last); //一番先頭に一番最後を持ってくる
 	last->next = first;              //一番目の次を元一番目に変更
 	last->prev = NULL;               //先頭になったから一個前のアドレスをNULL
 	first->prev = last;              //一個前に追加されたからアドレスを追加
 	last_second->next = NULL;        //最後の構造体なのでNULL
 	*stack_a = last;                 //先頭アドレスを更新
+}
+
+//構造体リストの最後のアドレスをリターン
+t_num	*ft_lstlast(t_num **stack_a)
+{
+	if (!stack_a || !*stack_a)
+		return (NULL);
+	while ((*stack_a)->next != NULL)
+	{
+		stack_a = (*stack_a)->next;
+	}
+	return (stack_a);
 }
