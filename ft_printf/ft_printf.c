@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 08:05:24 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/07 20:51:59 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/08 19:36:38 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ int	which_conversion(const char *format, va_list args, int count)
 			count = ft_unnum(va_arg(args, unsigned int));
 		else if (*format == 'x' || *format == 'X')
 			count = ft_puthex(va_arg(args, unsigned int), format);
+		else if (*format == '.')
+		{
+			format += 3;
+			count = ft_putdouble(va_arg(args, double), format);
+		}
 	}
 	else if (*format == '%')
 		count = write(1, "%", 1);
@@ -63,4 +68,3 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (count);
 }
-

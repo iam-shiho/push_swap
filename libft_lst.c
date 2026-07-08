@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   libft_lst.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/03 17:32:25 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/08 19:31:15 by swaragay         ###   ########.fr       */
+/*   Created: 2026/07/08 19:20:47 by swaragay          #+#    #+#             */
+/*   Updated: 2026/07/08 19:25:36 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//ソートしていく関数の実装
-
-double	compute_disorder(t_num **stack_a)
+//構造体リストの最後のアドレスをリターン
+t_num	*ft_lstlast(t_num **stack_a)
 {
-	double	mistakes;
-	double	total_pairs;
-	size_t i;
-	size_t j;
+	if (!stack_a || !*stack_a)
+		return (NULL);
+	while ((*stack_a)->next != NULL)
+	{
+		stack_a = (*stack_a)->next;
+	}
+	return (stack_a);
+}
+
+//構造体の数を数える
+int	ft_lstsize(t_num *stack_a)
+{
+	int	i;
 
 	i = 0;
-	j = 1;
-	mistakes = 0;
-	total_pairs = 0;
-for i from 0 to size(a)-1:
-for j from i+1 to size(a)-1:
-total_pairs += 1
-while(!*stack)
-{
-	if ((stack_a[i]->value) > (stack_a[j]->value))
-		mistakes += 1;
-}
-return (mistakes / total_pairs);
+	if (!stack_a)
+		return (0);
+	while (stack_a != NULL)
+	{
+		i++;
+		stack_a = stack_a->next;
+	}
+	return (i);
 }
