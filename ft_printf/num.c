@@ -6,11 +6,10 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 12:35:25 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/09 15:37:16 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/09 15:52:23 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include "push_swap.h"
 
 int	ft_num(int num)
@@ -52,12 +51,17 @@ int	ft_unnum(unsigned int num)
 int	ft_putdouble(double num)
 {
 	int	tmp;
-	int	res;
+	char	*res;
+	size_t i;
 
-	num = num * 100;
-
+	tmp = num * 10000;
+	res = ft_itoa(tmp);
+	i = ft_strlen(res);
+	write(1,&res[i-1],1);
+	write(1,&res[i-2],1);
 	write(1, ".", 1);
-	res = num / 100;
+	res = ft_free(res);
+	tmp = num / 100;
 	write(1, , );
 }
 

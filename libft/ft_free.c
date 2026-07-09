@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hex.c                                              :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/04 15:45:14 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/09 15:52:28 by swaragay         ###   ########.fr       */
+/*   Created: 2026/07/09 15:51:28 by swaragay          #+#    #+#             */
+/*   Updated: 2026/07/09 15:52:20 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_puthex(unsigned long num, const char *format)
+char	*ft_free(char *s)
 {
-	int		count;
-	char	res;
-
-	count = 0;
-	if (num >= 16)
-		count += ft_puthex(num / 16, format);
-	num = num % 16;
-	if (num >= 10 && (*format == 'x' || *format == 'p'))
-		res = (num - 10) + 'a';
-	else if (num >= 10 && *format == 'X')
-		res = (num - 10) + 'A';
-	else
-		res = num + '0';
-	count += write(1, &res, 1);
-	return (count);
+	free(s);
+	return (NULL);
 }

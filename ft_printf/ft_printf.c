@@ -6,11 +6,10 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 08:05:24 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/08 19:36:38 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/09 15:52:41 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include "push_swap.h"
 
 int	which_conversion(const char *format, va_list args, int count)
