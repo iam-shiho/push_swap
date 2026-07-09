@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 12:35:25 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/08 22:20:10 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/09 15:37:16 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,21 @@ int	ft_unnum(unsigned int num)
 	return (count);
 }
 
-int ft_putdouble(double num)
+int	ft_putdouble(double num)
 {
+	int	tmp;
+	int	res;
 
+	num = num * 100;
+
+	write(1, ".", 1);
+	res = num / 100;
+	write(1, , );
 }
+
 
 /*
 全体の文字列と小数点以下の文字数がわかればそこから引き算してwriteすればいいのかな
-・文字数カウント
-・小数点以下の文字数カウント
-・キャストして小数点を切り捨てる
-・数字をかけて繰り上げをする→キャストして少数点をきりすてる
 
 ・×10000 する
 ・した2つを出力

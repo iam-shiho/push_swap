@@ -6,32 +6,47 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 17:32:25 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/08 19:31:15 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/09 15:00:58 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//ソートしていく関数の実装
-
+// disoderを計算して0.00~1までの数字を出力
 double	compute_disorder(t_num **stack_a)
 {
-	double	mistakes;
-	double	total_pairs;
-	size_t i;
-	size_t j;
+	t_num	*tmp_i;
+	t_num	*tmp_j;
 
-	i = 0;
-	j = 1;
+	double mistakes;    // a>bの数
+	double total_pairs; //すべてのペアの数
+	tmp_i = stack_a;
+	tmp_j = tmp_i->next;
 	mistakes = 0;
 	total_pairs = 0;
-for i from 0 to size(a)-1:
-for j from i+1 to size(a)-1:
-total_pairs += 1
-while(!*stack)
+	//比べたペアの数をカウント　数字を比べる
+	while (!tmp_i && !tmp_i->next)
+	{
+		if ((tmp_i->value) > (tmp_j->value))
+			++mistakes;
+		++total_pairs;
+		tmp_i = tmp_i->next;
+		tmp_j = tmp_i->next;
+	}
+	return (mistakes / total_pairs);
+}
+
+//各アルゴリズムに振り分けてソートする関数
+void push_swap(t_num **stack_a, double disorder, t_bench *bench)
 {
-	if ((stack_a[i]->value) > (stack_a[j]->value))
-		mistakes += 1;
+	if(disorder < 0.2)
+	{
+		//アルゴリズム関数に入る
+		bench->strategy = "アルゴリズム名"; //mallocするのか？
+	}
+
 }
-return (mistakes / total_pairs);
-}
+
+/*
+アルゴリズムを手動で選択した際は、連結リストを作ったあと対応するdisorderをわたして、benchのためにdisorderを計算するけどこの関数のdisorderは手入力にする
+*/
