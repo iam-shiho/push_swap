@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 18:27:40 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/08 18:54:21 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/09 16:24:09 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include  <stdlib.h>
+# include <stdarg.h>
 
 //数字をまとめる構造体
 typedef struct s_list
@@ -37,6 +38,7 @@ typedef struct s_num
 typedef struct bench_list
 {
 	double				disorder;// 混沌度（0.00〜1.00なので、floatかdoubleをしようする）（intだと小数点以下が表せない）%はft_printfで出力するのかな？？
+	char *res_disorder; //benchで出力する小数点2以下のdisorder
 	char *strategy; // 使用したアルゴリズム名
 	int total_ops;  // 総操作回数
 
