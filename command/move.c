@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 19:29:07 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/08 19:21:20 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/09 17:22:17 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,9 @@ void	lst_pushdown(t_num **stack_a)
 	last = ft_lstlast(*stack_a); //各アドレスを保持
 	first = *stack_a;
 	last_second = last->prev;
-	last->next = first;              //一番目の次を元一番目に変更
-	last->prev = NULL;               //先頭になったから一個前のアドレスをNULL
-	first->prev = last;              //一個前に追加されたからアドレスを追加
-	last_second->next = NULL;        //最後の構造体なのでNULL
-	*stack_a = last;                 //先頭アドレスを更新
+	last->next = first;       //一番目の次を元一番目に変更
+	last->prev = NULL;        //先頭になったから一個前のアドレスをNULL
+	first->prev = last;       //一個前に追加されたからアドレスを追加
+	last_second->next = NULL; //最後の構造体なのでNULL
+	*stack_a = last;          //先頭アドレスを更新
 }
-
-

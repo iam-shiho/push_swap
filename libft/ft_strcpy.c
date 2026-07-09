@@ -6,13 +6,13 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 16:40:06 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/09 16:42:32 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/09 17:21:56 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char ft_strlcpy(char *dst, char *src)
+char	ft_strlcpy(char *dst, char *src)
 {
 	size_t	i;
 
@@ -24,5 +24,5 @@ char ft_strlcpy(char *dst, char *src)
 	}
 	dst[i] = '\0';
 	free(src);
-	return(dst);
+	return (dst);
 }

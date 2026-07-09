@@ -6,17 +6,18 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 17:32:25 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/09 17:00:31 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/09 17:22:30 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// disoderを計算して0.00~1までの数字を出力
-double	compute_disorder(t_num **stack_a)
+// disoderを計算して0.00~1までの数字を出力 + 構造体に書き込む
+double	compute_disorder(t_num **stack_a, t_bench *bench)
 {
 	t_num	*tmp_i;
 	t_num	*tmp_j;
+	double	res;
 
 	double mistakes;    // a>bの数
 	double total_pairs; //すべてのペアの数
@@ -33,7 +34,9 @@ double	compute_disorder(t_num **stack_a)
 		tmp_i = tmp_i->next;
 		tmp_j = tmp_i->next;
 	}
-	return (mistakes / total_pairs);
+	res = mistakes / total_pairs;
+	bench->res_dis = res_disorder(res);
+	return (res);
 }
 
 //キモいけど文字列を作成する関数
