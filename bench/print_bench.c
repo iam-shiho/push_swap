@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   print_bench.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/09 15:37:47 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/09 17:22:05 by swaragay         ###   ########.fr       */
+/*   Created: 2026/07/10 02:27:34 by swaragay          #+#    #+#             */
+/*   Updated: 2026/07/10 02:33:09 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	ft_strlen(const char *s)
+//benchの中身をプリントする関数 --benchが来たときの信号がわかるような引数にする
+void print_bench(int i, t_bench *bench)
 {
-	size_t	count;
-
-	count = 0;
-	while (s[count] != '\0')
-	{
-		count++;
-	}
-	return (count);
+	ft_printf("[bench] disorder: ");
+	print_disorder(bench->disorder);
+	
 }

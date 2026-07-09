@@ -6,14 +6,14 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 17:32:25 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/09 17:22:30 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/10 02:26:42 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// disoderを計算して0.00~1までの数字を出力 + 構造体に書き込む
-double	compute_disorder(t_num **stack_a, t_bench *bench)
+// disoderを計算して0.00~1までの数字を作成 + 構造体に書き込む
+void	compute_disorder(t_num **stack_a, t_bench **bench)
 {
 	t_num	*tmp_i;
 	t_num	*tmp_j;
@@ -35,32 +35,25 @@ double	compute_disorder(t_num **stack_a, t_bench *bench)
 		tmp_j = tmp_i->next;
 	}
 	res = mistakes / total_pairs;
-	bench->res_dis = res_disorder(res);
-	return (res);
+	(*bench)->disorder = res;
 }
 
-//キモいけど文字列を作成する関数
-char	res_disorder(double dis)
+// desorderを出力する関数
+void	print_disorder(double dis)
 {
-	char	*res;
+	int		num;
 	char	*tmp;
 	size_t	i;
 
-	res = (char *)malloc(sizeof(char) * 7);
-	if (!res)
-		return (NULL);
-	//整数部分を入れる
-	dis = dis * 100;
-	res = ft_strcpy(res, ft_itoa((int)dis));
-	//小数点を入れる
-	res[3] = '.';
-	res[4] = '\0';
-	//小数点以下を入れる
-	dis = dis * 100;
+	num = dis * 100;
+	dis = dis * 10000;
 	tmp = ft_itoa((int)dis);
 	i = ft_strlen(tmp);
-	res = ft_strcpy(&res[4], &tmp[i - 3]);
-	res[6] = '%';
-	res[7] = '\0';
-	return (res);
+	ft_printf("%s.%c%c%%\n", ft_itoa(num), tmp[i - 3], tmp[i - 2]);
 }
+
+// int	main(void)
+// {
+// 	double dis = 0.10000;
+// 	print_disorder(dis);
+// }

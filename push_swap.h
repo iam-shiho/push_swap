@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 18:27:40 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/09 17:21:42 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/10 02:02:36 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,10 @@ typedef struct s_num
 // benchの中身を保存する構造体
 typedef struct bench_list
 {
-	double disorder;
-		// 混沌度（0.00〜1.00なので、floatかdoubleをしようする）（intだと小数点以下が表せない）%はft_printfで出力するのかな？？
-	char *res_dis;   // benchで出力する小数点2以下のdisorder
-	char *strategy;  // 使用したアルゴリズム名
-	int total_ops;   // 総操作回数
+	double				disorder;
+	// 混沌度（0.00〜1.00なので、floatかdoubleをしようする）（intだと小数点以下が表せない）%はft_printfで出力するのかな？？
+	char *strategy; // 使用したアルゴリズム名
+	int total_ops;  // 総操作回数
 
 	// 各コマンドのカウンター
 	int					sa;
