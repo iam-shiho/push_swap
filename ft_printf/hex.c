@@ -6,11 +6,12 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 15:45:14 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/09 17:22:12 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/09 20:56:18 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+//#include "push_swap.h"
+#include "ft_printf.h"
 
 int	ft_puthex(unsigned long num, const char *format)
 {
