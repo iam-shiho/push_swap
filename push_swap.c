@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 16:19:45 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/10 03:15:31 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/10 03:19:03 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int argv, char **argc)
 	int		adaptive;
 	double	dis;
 
-	//文字を解析してstack_aに入れていく　
+	/*各構造体の中身が詰められた上で*/
 	if (argc == "--simple")
 		dis = 0.1;
 	else if (argc == "--medium")
@@ -58,6 +58,7 @@ int	main(int argv, char **argc)
 		adaptive = 1;
 	else
 		dis = compute_disorder((*lst)->num, *bench);
+	compute_disorder((*lst)->num, *bench);
 	choose_algorithm((*lst)->num, dis, *bench, adaptive);
 	if (argc == "--bench")
 		print_bench(*bench);
@@ -66,4 +67,3 @@ int	main(int argv, char **argc)
 /*
 アルゴリズムを手動で選択した際は、連結リストを作ったあと対応するdisorderをわたして、benchのためにdisorderを計算するけどこの関数のdisorderは手入力にする
 */
-
