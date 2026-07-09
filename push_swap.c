@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 16:19:45 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/10 03:19:03 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/10 05:27:41 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	choose_algorithm(t_num **stack_a, double disorder, t_bench **bench,
 }
 
 // stack_aを受け取ってソートするまでの関数（いるかわからないけど作成する。型はvoidでいいのかわからん！！） benchの中身も追加する
-int	main(int argv, char **argc)
+int	main(int argc, char **argv)
 {
 	t_bench	**bench;
 	t_list	**lst;
@@ -48,6 +48,8 @@ int	main(int argv, char **argc)
 	double	dis;
 
 	/*各構造体の中身が詰められた上で*/
+
+	//手打ちでdisorderを指定する
 	if (argc == "--simple")
 		dis = 0.1;
 	else if (argc == "--medium")
@@ -57,10 +59,10 @@ int	main(int argv, char **argc)
 	else if (argc == "--adaptive")
 		adaptive = 1;
 	else
-		dis = compute_disorder((*lst)->num, *bench);
-	compute_disorder((*lst)->num, *bench);
+		dis = compute_disorder((*lst)->num, *bench); //指定されていないときは計算結果を代入
+	compute_disorder((*lst)->num, *bench); //フラグが指定されている場合disorderの計算ができていないからどっかで計算したい
 	choose_algorithm((*lst)->num, dis, *bench, adaptive);
-	if (argc == "--bench")
+	if (argc == "--bench") //benchを出力する
 		print_bench(*bench);
 }
 

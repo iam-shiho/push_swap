@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 19:29:07 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/09 17:22:17 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/10 05:38:33 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	lst_swaptop(t_num **stack_a)
 	third->prev = first;    // 3つ目の一個まえのアドレスを更新
 }
 
-// 最上要素を
+// stack_aの先頭をstack_bの先頭に追加する
 void	lst_movefirst(t_num **stack_a, t_num **stack_b)
 {
 	t_num	*a_first;
@@ -60,15 +60,15 @@ void	lst_pushup(t_num **stack_a)
 
 	if (!stack_a || !*stack_a)
 		return ;
-	first = *stack_a;
+	first = *stack_a; //各変数にアドレスを代入する
 	second = first->next;
 	last = ft_lstlast(*stack_a);
-	last->next = first;
-	second->prev = NULL;
-	first->next = NULL;
-	last->next = first;
-	first->prev = last;
-	*stack_a = second;
+	last->next = first; //一番上の構造体を下にシフトする
+	second->prev = NULL; //二番目の構造体が先頭になるため前のアドレスにNULLを代入する
+	first->next = NULL; //最後になったため次の構造体はないためNULLを代入する
+	last->next = first; //元々最後だった構造体のあとに一個構造体が追加されたからアドレスを代入
+	first->prev = last; // 前のアドレスを更新
+	*stack_a = second; //先頭アドレスの更新
 }
 
 //すべての要素を1つ下にシフトする
