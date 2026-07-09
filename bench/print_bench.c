@@ -6,16 +6,21 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 02:27:34 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/10 02:33:09 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/10 02:50:30 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//benchの中身をプリントする関数 --benchが来たときの信号がわかるような引数にする
-void print_bench(int i, t_bench *bench)
+// benchの中身をプリントする関数 --benchが来たときに稼働するようにする
+void	print_bench(t_bench *bench)
 {
 	ft_printf("[bench] disorder: ");
 	print_disorder(bench->disorder);
-	
+	ft_printf("[bench] strategy: %s\n", bench->strategy);
+	ft_printf("[bench] total_ops: %d\n", bench->total_ops);
+	ft_printf("[bench]  sa: %d sb: %d ss: %d pa: %d pb: %d\n", bench->sa,
+		bench->sb, bench->ss, bench->pa, bench->pb);
+	ft_printf("[bench]  ra: %d rb: %d rr: %d rra: %d rrb: %d rrr: %d\n",
+		bench->ra, bench->rb, bench->rr, bench->rra, bench->rrb, bench->rrr);
 }

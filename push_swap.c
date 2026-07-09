@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 16:19:45 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/10 02:27:17 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/10 03:15:31 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,31 @@ void	choose_algorithm(t_num **stack_a, double disorder, t_bench **bench,
 	}
 }
 
-//stack_aを受け取ってソートするまでの関数（いるかわからないけど作成する。型はvoidでいいのかわからん！！） //--benchとかが来たときの対応ができてないよね！
-void push_swap(t_num **stack_a)
+// stack_aを受け取ってソートするまでの関数（いるかわからないけど作成する。型はvoidでいいのかわからん！！） benchの中身も追加する
+int	main(int argv, char **argc)
 {
-	t_bench **bench;
-	compute_disorder(*stack_a,  *bench);
+	t_bench	**bench;
+	t_list	**lst;
+	int		adaptive;
+	double	dis;
+
+	//文字を解析してstack_aに入れていく　
+	if (argc == "--simple")
+		dis = 0.1;
+	else if (argc == "--medium")
+		dis = 0.3;
+	else if (argc == "--complex")
+		dis = 0.6;
+	else if (argc == "--adaptive")
+		adaptive = 1;
+	else
+		dis = compute_disorder((*lst)->num, *bench);
+	choose_algorithm((*lst)->num, dis, *bench, adaptive);
+	if (argc == "--bench")
+		print_bench(*bench);
 }
 
 /*
 アルゴリズムを手動で選択した際は、連結リストを作ったあと対応するdisorderをわたして、benchのためにdisorderを計算するけどこの関数のdisorderは手入力にする
 */
 
-//
