@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 17:32:25 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/10 02:26:42 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/10 13:49:51 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,3 +57,14 @@ void	print_disorder(double dis)
 // 	double dis = 0.10000;
 // 	print_disorder(dis);
 // }
+
+// どのアルゴリズムを使用したのか出力する
+void	algo_class(double dis)
+{
+	if (dis < 0.2)
+		ft_printf("O(n²)\n");
+	else if (0.2 <= dis < 0.5)
+		ft_printf("O(n√n)\n");
+	else if (dis >= 0.5)
+		ft_printf("O(n log n)\n");
+}
