@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 18:27:40 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/10 13:22:27 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/13 16:37:52 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ typedef struct s_list
 typedef struct s_num
 {
 	int value;            // 記入されたの数値
-	int index;            // 小さい順のインデックス０〜
+	int index;            // simpleで使う
+	int min_index; //最小値〜何番目か　index
 	struct s_stack *next; // 次の要素へのポインター
 	struct s_stack *prev; // 前の要素のポインター
 }						t_num;
