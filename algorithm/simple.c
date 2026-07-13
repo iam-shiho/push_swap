@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 07:33:11 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/13 18:23:06 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/13 19:11:30 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,10 @@ void	simple(t_num **stack_a, t_num **stack_b, t_num **bench)
 	t_num	*min;
 
 	i = 0;
-
-	while (!*stack_a) //配列の中身がなくなるまで
+	while (stack_a) //配列の中身がなくなるまで
 	{
 		min = *stack_a;
-		while (!*stack_a) // minの更新　最後まで 最小値が出てくる
+		while (*stack_a) // minの更新　最後まで 最小値が出てくる
 		{
 			if (min->value > (*stack_a)->value)
 				min = *stack_a;
@@ -32,17 +31,17 @@ void	simple(t_num **stack_a, t_num **stack_b, t_num **bench)
 		move_top(*stack_a, min, *bench); //先頭にminを持っていく
 		pb(*stack_a, *stack_b, *bench);  // stack_bに入れ込む
 	}
-	while (!*stack_b) // stack_bのものを移行してくる
+	while (*stack_b) // stack_bのものを移行してくる
 		pa(*stack_a, *stack_b, *bench);
 }
 
-//前から何番目かの番号をつける
+//前から何番目かの番号をつける 一番最初に計算して-1していくのでもいい
 int	put_index(t_num **stack_a)
 {
 	int	i;
 
 	i = 1;
-	while (!*stack_a)
+	while (*stack_a)
 	{
 		(*stack_a)->index = i;
 		++i;

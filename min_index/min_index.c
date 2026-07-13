@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 13:51:11 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/13 18:39:08 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/13 19:08:02 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	min_index(t_num **stack_a)
 	j = 0;
 	while (!*stack_a)
 	{
-		while (!*stack_a) // minを見つける
+		while (*stack_a) // minを見つける
 		{
-			if (min->value + j > (*stack_a)->value) 
+			if (min->value + j > (*stack_a)->value)
 			{
 				min = *stack_a;
 				j = 0;
