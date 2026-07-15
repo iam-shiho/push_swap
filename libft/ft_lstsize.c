@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   min_index.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/10 13:51:11 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/14 04:40:45 by swaragay         ###   ########.fr       */
+/*   Created: 2026/07/15 16:46:55 by swaragay          #+#    #+#             */
+/*   Updated: 2026/07/15 16:48:00 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//最小値からどのぐらいはなれているのか indexをつける
-void	min_index(t_num **stack_a)
+int	ft_lstsize(t_num *stack_a)
 {
-	t_num	*copy;
-	int		i;
-	int		j;
+	int	i;
 
-	copy = *stack_a;
-	while()
-
+	i = 0;
+	if (!stack_a)
+		return (0);
+	while (stack_a != NULL)
+	{
+		i++;
+		stack_a = stack_a->next;
+	}
+	return (i);
 }
-
-/*
-コピーをソートする
-ソートしたものと比べて本家にインデックスをつけていく
-*/
-
-
-/*
-割る10は　>>
-*/

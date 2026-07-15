@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 18:27:40 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/13 16:37:52 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/15 16:55:21 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ typedef struct s_list
 typedef struct s_num
 {
 	int value;            // 記入されたの数値
-	int index;            // simpleで使う
-	int min_index; //最小値〜何番目か　index
+	int index;            // 各アルゴリズムで使用する前からのインデックス
+	int chunk;
+	int min_index; //座標圧縮
 	struct s_stack *next; // 次の要素へのポインター
 	struct s_stack *prev; // 前の要素のポインター
 }						t_num;
@@ -57,3 +58,8 @@ typedef struct bench_list
 }						t_bench;
 
 #endif
+
+/*
+構造体を選んだ理由
+入れ込みたい要素が多いから
+*/

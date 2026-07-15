@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 07:33:11 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/13 19:11:30 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/15 18:25:48 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	simple(t_num **stack_a, t_num **stack_b, t_num **bench)
 	t_num	*min;
 
 	i = 0;
-	while (stack_a) //配列の中身がなくなるまで
+	while (*stack_a) //配列の中身がなくなるまで
 	{
 		min = *stack_a;
 		while (*stack_a) // minの更新　最後まで 最小値が出てくる

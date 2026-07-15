@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 17:32:25 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/10 13:49:51 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/14 02:58:45 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	print_disorder(double dis)
 	dis = dis * 10000;
 	tmp = ft_itoa((int)dis);
 	i = ft_strlen(tmp);
-	ft_printf("%s.%c%c%%\n", ft_itoa(num), tmp[i - 3], tmp[i - 2]);
+	ft_printf("%d.%c%c%%\n", num, tmp[i - 3], tmp[i - 2]); //\0も含まれる
+	free(tmp);
 }
 
 // int	main(void)
