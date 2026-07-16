@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 07:33:08 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/15 18:33:48 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/16 18:23:30 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,60 +15,66 @@
 void	medium(t_num **stack_a, t_num **stack_b, t_num **bench)
 {
 	int		i;
-	t_num	*min;
+	int		j;
+	t_num	*max;
 
 	i = 0;
-	chunk_number(*stack_a);
-	//チャンクごとにソート
-	while (*stack_a) // chunkごとにソートする
+	j = 0;
+	move_b(*stack_a, *stack_b, *bench);
+	while (*stack_b) //最大値を見つけてaに移動させる
 	{
-		while ()
+		while (*stack_b) //最大値を見つけてaに移動
 		{
-			while (*stack_a || (*stack_a)->chunk == i) // chunkごとにソートする
-			{
-				min = *stack_a;
-				if (min->value > (*stack_a)->value)
-					min = *stack_a;
-			}
-			ra(*min, *stack_b, *bench);
+			if (max->value > (*stack_a)->value)
+				max = *stack_a;
+			stack_a = (*stack_a)->next;
 		}
-		++i;
-	}
-	while (*stack_b) // ソートしながらstack_bのものを移行してくる
-	{
+		move_top(*stack_a, max, *bench);
 		pa(*stack_a, *stack_b, *bench);
 	}
 }
 
 /*
-・n個のチャンクにわける
-	・インデックスをつける
-・ソートする
-	・stack_bにchunk毎入れていく
-		・stack_bを降順に整頓する
-・stack_aに入れ直す
-・チャンクの[i]ごとにくらべていく
-	・stack_bにチャンクの中身が移動されたときにそのチャンクが次のインデックスにかわる
-・stack_aに入れ直す
+・探索する数を√ｎ個ずつに分ける　123/456/789/ みたいな！
+・0~分けた数字まで　該当しかものはｂにいれていく
+	・ｂに送る際に偶数は上、奇数は下など操作してVの字ができるようにしていく
+		降順よりも、はやく先頭に数字を持っていける
 */
 
-// chunkに分けるのとチャンクごとのインデックスをつける
-void	chunk_number(t_num **stack_a)
+// √ｎをもとめる
+int	compute_chunksize(t_num **stack_a)
 {
 	int	i;
 	int	j;
 	int	size;
 
-	size = ft_lstsize(stack_a) / 5; //チャンクの数はここで変える
-	while (*stack_a || i < 5)
+	i = 0;
+	size = ft_lstsize(stack_a);
+	while (size <= i * i) //√ｎを求める
+		++i;
+	return (i);
+}
+
+void	move_b(t_num **stack_a, t_num **stack_b, t_num **bench)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (*stack_a) // sizeごとにまわして、数字を比べる
 	{
-		j = 0;
-		while (*stack_a || j < size)
+		while (*stack_a) // sizeごとにその中の数字を探して探索する
 		{
-			(*stack_a)->chunk = i;
-			(*stack_a)->index = j;
-			stack_a = (*stack_a)->next;
-			++j;
+			if ((*stack_a)->value < compute_chunksize(*stack_a) * i)
+			{
+				pb(*stack_a, *stack_b, *bench);
+				if (j % 2 == 0)
+					rb(*stack_a, *stack_b, *bench);
+				++j;
+			}
+			else
+				ra(*stack_a, *stack_b, *bench);
 		}
 		++i;
 	}

@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 18:27:40 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/15 16:55:21 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/16 17:36:52 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct s_num
 {
 	int value;            // 記入されたの数値
 	int index;            // 各アルゴリズムで使用する前からのインデックス
-	int chunk;
 	int min_index; //座標圧縮
 	struct s_stack *next; // 次の要素へのポインター
 	struct s_stack *prev; // 前の要素のポインター
@@ -60,6 +59,8 @@ typedef struct bench_list
 #endif
 
 /*
-構造体を選んだ理由
-入れ込みたい要素が多いから
+データを順番に並べたデータ構造を"連結リスト"
+リストを構成する一つ一つの要素を"ノード" (データだけでなく、ノード間を連結（リンク）するための情報を含む)
+
+構造体は型の名前
 */
