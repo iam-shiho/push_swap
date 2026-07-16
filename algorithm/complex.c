@@ -6,11 +6,12 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 07:33:06 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/16 12:21:22 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/16 19:43:34 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 /*
 ・一バイトの数値を構造体の中に入れる
 ・０から２５５まで順番に見つけたら入れていく
@@ -47,3 +48,33 @@
 */
 
 /*simpleと変わりなくね？？ 早くソートすることを意識しすぎてるのか？？*/
+
+void	complex(t_num **stack_a, t_num **stack_b, t_num **bench)
+{
+	int	i;
+	int	j;
+	int	size;
+
+	i = 0;
+	j = 0;
+	size = ft_lstsize(stack_a);
+	while (size) //２進数の桁数を数える
+	{
+		size = size / 2;
+		++i;
+	}
+	while (*stack_a || j < i) //桁数分回る
+	{
+		while (*stack_a) // bitが0のときにｂに移動させる　
+		{
+			if ((((*stack_a)->min_index >> j) & 1) == 0)
+				// bitをi分シフトする→型抜く→それが０だったばあいbにいく
+				pb(*stack_a, *stack_b, *bench);
+			else
+				ra(*stack_a, *stack_b, *bench);
+		}
+		while (*stack_b)
+			pa(*stack_a, *stack_b, *bench);
+		++j;
+	}
+}
