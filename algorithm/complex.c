@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 07:33:06 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/16 19:43:34 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/16 19:52:02 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,32 @@ void	complex(t_num **stack_a, t_num **stack_b, t_num **bench)
 
 	i = 0;
 	j = 0;
-	size = ft_lstsize(stack_a);
-	while (size) //２進数の桁数を数える
+	size = count_bitsize(ft_lstsize(stack_a));
+	while (*stack_a || i < size) //桁数分回る
 	{
-		size = size / 2;
-		++i;
-	}
-	while (*stack_a || j < i) //桁数分回る
-	{
-		while (*stack_a) // bitが0のときにｂに移動させる　
+		while (*stack_a || j < size) // bitが0のときにｂに移動させる　
 		{
 			if ((((*stack_a)->min_index >> j) & 1) == 0)
 				// bitをi分シフトする→型抜く→それが０だったばあいbにいく
 				pb(*stack_a, *stack_b, *bench);
 			else
 				ra(*stack_a, *stack_b, *bench);
+			++j;
 		}
 		while (*stack_b)
 			pa(*stack_a, *stack_b, *bench);
-		++j;
+		++i;
 	}
+}
+
+int	count_bitsize(int num)
+{
+	int	i;
+
+	while (num) //２進数の桁数を数える
+	{
+		num = num / 2;
+		++i;
+	}
+	return (i);
 }
