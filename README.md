@@ -57,19 +57,18 @@ ex:（n-1）,(n-2)　数字の部分が確定した数字の数
 * **選択フラグ**: `--adaptive` (またはフラグなし時のデフォルト挙動)
 * **設計思想と閾値の正当性**:
   無秩序度に応じて以下の閾値で上記の各アルゴリズムを呼び出します。
-  * **Low disorder ( $< 0.2$ )**: $O(n^2)$ の手法を適用。`[理由：ほぼ整列しているため、単純なインサートの方が命令数が少なくて済む、など]`
-  * **Medium disorder ( $0.2 \le \text{disorder} < 0.5$ )**: $O(n\sqrt{n})$ の手法を適用。`[理由：適度に散らばったデータに対して効率よくブロック化できるため、など]`
-  * **High disorder ( $\ge 0.5$ )**: $O(n \log n)$ の手法を適用。`[理由：完全に無秩序なデータに対しては、分割統治や基数によるアプローチが最悪計算量を最も低く抑えられるため、など]`
+  * **Low disorder ( $< 0.2$ )**: $O(n^2)$ の手法を適用。
+  * **Medium disorder ( $0.2 \le \text{disorder} < 0.5$ )**: $O(n\sqrt{n})$ の手法を適用。
+  * **High disorder ( $\ge 0.5$ )**: $O(n \log n)$ の手法を適用。
 
 ---
 
 ## Contribution & Collaboration
-本プロジェクトは2名の共同開発者によって作成されました。お互いにコードのすべての論理とアルゴリズムを完全に理解し、説明することができます。
-
-* **[あなたのログイン名]**:
-  * 担当範囲: `[例: パーサーの実装、Disorder計算ロジック、Simple / Mediumアルゴリズムの開発、Makefileの構築]`
-* **[相方のログイン名]**:
+* **[ttatsuno]**:
   * 担当範囲: `[例: Complex（Radix/Quick）アルゴリズムの実装、Adaptive選択ロジック、デバッグ用チェッカー、テストスクリプトの作成]`
+* **[swaragay]**:
+  * 担当範囲: `READMEの作成。`
+
 
 ---
 
@@ -130,27 +129,15 @@ $ cat bench.txt
 ### References & Resources
 
 * Donald Knuth, *The Art of Computer Programming* (Big-O Notation and Sorting Algorithms)
-* `[その他参考にした記事、リポジトリ、チュートリアルなどのURL/書籍名]`
-
+* **[ttatsuno]**:
+* **[swaragay]**:
+  * [ソートアルゴリズム](https://www.study-pg.com/c4-basic/bit-shifts-operators/)
+  * [計算量](https://tukumolog.com/what-is-computational-complexity/)
+  * [座標圧縮の解説](https://algo-logic.info/coordinate-compress/) `min_index`
+  * [選択ソート](https://ja.wikipedia.org/wiki/%E9%81%B8%E6%8A%9E%E3%82%BD%E3%83%BC%E3%83%88) `simple(選択ソート)`
+  * [チャンクソート](https://www.linkedin.com/pulse/push-swap-art-sorting-two-stacks-anass-outiskte-bjsje) `medium(チャンクソート)`
+  * [基数ソートの仕組み](https://tukumolog.com/radix-sort-introduction/) `complex(基数ソート)`
+  * [ビットシフトとシフト演算子の基本](https://www.study-pg.com/c4-basic/bit-shifts-operators/) `complex(基数ソート)　bit演算の処理`
 ### AI Tool Usage Disclosure
 * **使用したタスク**:
-* `[例: READMEの枠組み作成]`
-* `[例: テストケースを自動生成するシェルスクリプトの作成補助]`
-* `[例: メモリリークをチェックするためのValgrindコマンドの引数確認]`
-
-
-* **品質の担保**:
-* AIによって生成されたロジックは、必ず開発者2名で1行ずつコードレビューを行い、完全に動作と原理を理解した上でプロジェクトに組み込みました。
-
-
-
-```
-
----
-
-### このテンプレートのポイント
-1. **グループワーク要件（Chapter VI.1 & IX）**: `README.md` の1行目のイタリック体指定、およびメンバーごとの具体的な貢献内容（Contribution section）を明文化しています。
-2. **アルゴリズム・計算量の解説（Chapter VI.3.3 & VII）**: 4つの手法（Simple、Medium、Complex、Adaptive）の計算量クラスの根拠と、Adaptiveの閾値（Low/Medium/High）の妥当性を説明するスペースを用意しています。
-3. **AIガイドラインの遵守（Chapter III & VII）**: 42が推奨する「AIをどのように使い、ピアレビューでどう検証したか」を記述するセクション（AI Tool Usage Disclosure）を含んでいます。
-
-```
+* `READMEの枠組み作成`
