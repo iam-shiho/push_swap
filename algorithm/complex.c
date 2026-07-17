@@ -6,13 +6,11 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 07:33:06 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/17 12:31:54 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/17 19:12:23 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-
 
 void	complex(t_num **stack_a, t_num **stack_b, t_num **bench)
 {

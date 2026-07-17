@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 13:51:11 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/17 15:59:57 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/17 19:19:16 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 void	min_index(t_num **stack_a)
 {
 	t_num	*copy;
+	t_num	*tmp;
 	int		i;
 	int		j;
-	int size;
+	int		size;
 
 	size = count_bitsize(max_value(stack_a));
-
 	copy = *stack_a;
 	while (copy || i < size) //桁数分回る
 	{
@@ -29,14 +29,11 @@ void	min_index(t_num **stack_a)
 		{
 			if ((((*stack_a)->min_index >> j) & 1) == 0)
 				// bitをi分シフトする→型抜く→それが０だったばあいbにいく
-				//bに移動させる
-			else
-
-			++j;
+				// bに移動させる
+				else ++j;
 		}
 		while (*stack_b)
-			pa(*stack_a, *stack_b, *bench);
-		++i;
+			++i;
 	}
 }
 

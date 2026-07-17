@@ -108,7 +108,7 @@ make re
 
 ### Benchmark Mode (`--bench`)
 
-`--bench` フラグを有効にすると、ソート用の命令（標準出力）に加えて、以下の分析メトリクスを **標準エラー出力（stderr）** に出力します。
+`--bench` フラグを有効にすると、ソート用の命令（標準出力）に加えて、以下の分析メトリクスを **標準エラー出力** に出力します。
 
 ```bash
 $ ARG="4 67 3 87 23"; ./push_swap --bench $ARG 2> bench.txt \vert{} ./checker$ARG
