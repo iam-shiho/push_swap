@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 19:10:24 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/19 22:00:12 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/19 22:34:48 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,27 +104,27 @@ int	ft_parse(int argc, char **argv, t_config *config, t_num **stack_a)
 	return (0);
 }
 
-int	main(int argc, char **argv)
-{
-	t_config	config;
-	t_num		*stack_a;
-	t_num		*stack_b;
-	t_bench *bench;
+// int	main(int argc, char **argv)
+// {
+// 	t_config	config;
+// 	t_num		*stack_a;
+// 	t_num		*stack_b;
+// 	t_bench *bench;
 
-	stack_a = NULL;
-	stack_b = NULL;
-	ft_bzero(&config, sizeof(t_config));
-	config.strategy_mode = -1;
-	if (argc < 2)
-		return (0);
-	if (ft_parse(argc, argv, &config, &stack_a) == -1)
-	{
-		write(2, "Error\n", 6);
-		free_stack(&stack_a);
-		return (1);
-	}
-	if (stack_a == NULL)
-		return (0);
-	coordinate_compression(stack_a);
-	return (0);
-}
+// 	stack_a = NULL;
+// 	stack_b = NULL;
+// 	ft_bzero(&config, sizeof(t_config));
+// 	config.strategy_mode = -1;
+// 	if (argc < 2)
+// 		return (0);
+// 	if (ft_parse(argc, argv, &config, &stack_a) == -1)
+// 	{
+// 		write(2, "Error\n", 6);
+// 		free_stack(&stack_a);
+// 		return (1);
+// 	}
+// 	if (stack_a == NULL)
+// 		return (0);
+// 	coordinate_compression(stack_a);
+// 	return (0);
+// }

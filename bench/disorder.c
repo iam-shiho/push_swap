@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 17:32:25 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/19 19:54:40 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/19 22:32:20 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	compute_disorder(t_num **stack_a, t_bench **bench)
 
 	double mistakes;    // a>bの数
 	double total_pairs; //すべてのペアの数
-	tmp_i = stack_a;
+	tmp_i = *stack_a;
 	tmp_j = tmp_i->next;
 	mistakes = 0;
 	total_pairs = 0;

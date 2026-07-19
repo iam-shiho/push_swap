@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 18:27:40 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/19 21:55:38 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/19 22:05:29 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,14 @@ char				**ft_split(char const *s, char c);
 
 /*algorithm*/
 void				adaptive(t_num **stack_a, t_num **stack_b, t_bench **bench);
-void				complex(t_num **stack_a, t_num **stack_b, t_num **bench);
+void				complex(t_num **stack_a, t_num **stack_b, t_bench **bench);
 int					count_bitsize(int num);
-void				medium(t_num **stack_a, t_num **stack_b, t_num **bench);
+void				medium(t_num **stack_a, t_num **stack_b, t_bench **bench);
 int					compute_chunksize(t_num **stack_a);
-void				move_b(t_num **stack_a, t_num **stack_b, t_num **bench);
-void				simple(t_num **stack_a, t_num **stack_b, t_num **bench);
+void				move_b(t_num **stack_a, t_num **stack_b, t_bench **bench);
+void				simple(t_num **stack_a, t_num **stack_b, t_bench **bench);
 int					put_index(t_num **stack_a);
-void				move_top(t_num **stack_a, t_num *min, t_num **bench);
+void				move_top(t_num **stack_a, t_num *min, t_bench **bench);
 
 /*bench*/
 void				compute_disorder(t_num **stack_a, t_bench **bench);

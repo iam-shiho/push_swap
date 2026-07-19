@@ -6,28 +6,30 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 07:33:08 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/19 21:50:01 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/19 22:31:26 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	medium(t_num **stack_a, t_num **stack_b, t_num **bench)
+void	medium(t_num **stack_a, t_num **stack_b, t_bench **bench)
 {
 	int		i;
 	int		j;
 	t_num	*max;
+	t_num	*current;
 
+	current = *stack_b;
 	i = 0;
 	j = 0;
 	move_b(stack_a, stack_b, bench);
 	while (*stack_b) //最大値を見つけてaに移動させる
 	{
-		while (*stack_b) //最大値を見つけてaに移動
+		while (current) //最大値を見つけてaに移動
 		{
-			if (max->value > (*stack_a)->value)
-				max = *stack_a;
-			stack_a = (*stack_a)->next;
+			if (max->value < current->value)
+				max = current;
+			current = current->next;
 		}
 		move_top(stack_a, max, bench);
 		pa(stack_a, stack_b, bench);
@@ -45,17 +47,16 @@ void	medium(t_num **stack_a, t_num **stack_b, t_num **bench)
 int	compute_chunksize(t_num **stack_a)
 {
 	int	i;
-	int	j;
 	int	size;
 
 	i = 0;
-	size = ft_lstsize(stack_a);
+	size = ft_lstsize(*stack_a);
 	while (size <= i * i) //√ｎを求める
 		++i;
 	return (i);
 }
 
-void	move_b(t_num **stack_a, t_num **stack_b, t_num **bench)
+void	move_b(t_num **stack_a, t_num **stack_b, t_bench **bench)
 {
 	int	i;
 	int	j;
