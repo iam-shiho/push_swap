@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "push_swap.h"
 #include "ft_dprintf.h"
 
 int	which_conversion(int fd, const char *format, va_list args, int count)
@@ -35,7 +34,7 @@ int	which_conversion(int fd, const char *format, va_list args, int count)
 	return (count);
 }
 
-int	ft_ddprintf(int fd, const char *format, ...)
+int	ft_dprintf(int fd, const char *format, ...)
 {
 	va_list	args;
 	int		count;

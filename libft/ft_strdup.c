@@ -6,11 +6,11 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 15:12:50 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/09 17:21:58 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/19 19:59:15 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 char	*ft_strdup(const char *s)
 {

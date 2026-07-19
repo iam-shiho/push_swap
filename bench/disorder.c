@@ -6,11 +6,11 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 17:32:25 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/19 16:06:09 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/19 19:54:40 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 // disoderを計算して0.00~1までの数字を作成 + 構造体に書き込む
 void	compute_disorder(t_num **stack_a, t_bench **bench)

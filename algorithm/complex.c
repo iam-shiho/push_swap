@@ -6,11 +6,11 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 07:33:06 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/17 19:12:23 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/19 19:54:23 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	complex(t_num **stack_a, t_num **stack_b, t_num **bench)
 {
@@ -29,7 +29,7 @@ void	complex(t_num **stack_a, t_num **stack_b, t_num **bench)
 				// bitをi分シフトする→型抜く→それが０だったばあいbにいく
 				pb(*stack_a, *stack_b, *bench);
 			else
-				ra(*stack_a, *stack_b, *bench);
+				ra(*stack_a, *bench);
 			++j;
 		}
 		while (*stack_b)

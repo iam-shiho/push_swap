@@ -6,11 +6,11 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/05 19:29:07 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/10 05:38:33 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/19 19:55:24 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 //上2つの要素を入れ替える
 void	lst_swaptop(t_num **stack_a)

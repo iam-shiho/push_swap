@@ -6,11 +6,11 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 02:27:34 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/19 16:04:20 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/19 19:55:13 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 // benchの中身をプリントする関数 --benchが来たときに稼働するようにする
 void	print_bench(t_bench *bench)

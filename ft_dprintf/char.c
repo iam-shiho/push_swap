@@ -6,11 +6,10 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 08:47:25 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/19 16:01:50 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/19 19:56:09 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "push_swap.h"
 #include "ft_dprintf.h"
 
 int	ft_char(int fd, int c)

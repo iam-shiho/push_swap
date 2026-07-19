@@ -6,11 +6,11 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 17:54:45 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/19 16:13:26 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/19 19:55:45 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	sa(t_num **stack_a, t_bench **bench)
 {

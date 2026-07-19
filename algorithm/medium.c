@@ -6,11 +6,11 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 07:33:08 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/17 19:12:32 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/19 19:54:29 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	medium(t_num **stack_a, t_num **stack_b, t_num **bench)
 {
@@ -70,11 +70,11 @@ void	move_b(t_num **stack_a, t_num **stack_b, t_num **bench)
 			{
 				pb(*stack_a, *stack_b, *bench);
 				if (j % 2 == 0)
-					rb(*stack_a, *stack_b, *bench);
+					rb(*stack_b, *bench);
 				++j;
 			}
 			else
-				ra(*stack_a, *stack_b, *bench);
+				ra(*stack_a, *bench);
 		}
 		++i;
 	}

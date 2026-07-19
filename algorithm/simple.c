@@ -6,11 +6,11 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 07:33:11 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/17 19:12:28 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/19 19:54:35 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 //最小値を先頭に持ってきてstack_bに入れ込んでいく
 void	simple(t_num **stack_a, t_num **stack_b, t_num **bench)

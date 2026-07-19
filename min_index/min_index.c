@@ -6,56 +6,30 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 13:51:11 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/17 19:19:16 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/19 19:59:30 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-//最小値からどのぐらいはなれているのか indexをつける
-void	min_index(t_num **stack_a)
+void	coordinate_compression(t_num *stack_a)
 {
-	t_num	*copy;
-	t_num	*tmp;
-	int		i;
-	int		j;
-	int		size;
+	t_num	*current;
+	t_num	*compare;
+	int		count;
 
-	size = count_bitsize(max_value(stack_a));
-	copy = *stack_a;
-	while (copy || i < size) //桁数分回る
+	current = stack_a;
+	while (current)
 	{
-		while (copy || j < size) // bitが0のときにｂに移動させる　
+		count = 0;
+		compare = stack_a;
+		while (compare)
 		{
-			if ((((*stack_a)->min_index >> j) & 1) == 0)
-				// bitをi分シフトする→型抜く→それが０だったばあいbにいく
-				// bに移動させる
-				else ++j;
+			if (compare->value < current->value)
+				count++;
+			compare = (t_num *)compare->next;
 		}
-		while (*stack_b)
-			++i;
+		current->min_index = count;
+		current = (t_num *)current->next;
 	}
 }
-
-int	max_value(t_num *stack_a)
-{
-	int	max;
-
-	while (stack_a)
-	{
-		if (stack_a->value > max)
-			max = stack_a->value;
-		stack_a = stack_a->next;
-	}
-	return (max);
-}
-
-/*
-一番大きい数字を見つける
-その数字の２進数の桁をしゅとく
-その分whileをまわす
-いまcopyのなかみをうごかしてもstack_aに影響がないか知りたい
-（ポインターのりかい）
-２つ用意してソートする
-あとはそれをくらべてstack_a の各数字を比べる
-*/
