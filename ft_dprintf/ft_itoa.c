@@ -6,12 +6,12 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/09 15:35:46 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/09 20:57:16 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/19 16:01:51 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //#include "push_swap.h"
-#include "ft_printf.h"
+#include "ft_dprintf.h"
 
 size_t	ft_intlen(long n)
 {

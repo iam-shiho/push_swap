@@ -1,51 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   num.c                                              :+:      :+:    :+:   */
+/*   char.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 12:35:25 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/10 00:44:40 by swaragay         ###   ########.fr       */
+/*   Created: 2026/06/04 08:47:25 by swaragay          #+#    #+#             */
+/*   Updated: 2026/07/19 16:01:50 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //#include "push_swap.h"
-#include "ft_printf.h"
+#include "ft_dprintf.h"
 
-int	ft_num(int num)
+int	ft_char(int fd, int c)
 {
-	int	res;
+	unsigned char	cc;
+
+	cc = (unsigned char)c;
+	return (write(fd, &cc, 1));
+}
+
+int	ft_putstr(int fd, const char *s)
+{
 	int	count;
 
+	if (!s)
+		return (write(fd, "(null)", 6));
 	count = 0;
-	if (num == -2147483648)
-		return (write(1, "-2147483648", 11));
-	if (num < 0)
+	while (s[count] != '\0')
 	{
-		write(1, "-", 1);
-		num = -num;
+		write(fd, &s[count], 1);
 		++count;
 	}
-	if (num >= 10)
-		count += ft_num(num / 10);
-	num = num % 10;
-	res = num + '0';
-	count += write(1, &res, 1);
 	return (count);
 }
 
-int	ft_unnum(unsigned int num)
+int	ft_pointer(int fd, void *p, const char *format)
 {
-	unsigned int	res;
 	int				count;
+	unsigned long	point;
 
+	if (!p)
+		return (write(fd, "(nil)", 5));
 	count = 0;
-	if (num >= 10)
-		count += ft_unnum(num / 10);
-	num = num % 10;
-	res = num + '0';
-	count += write(1, &res, 1);
+	point = (unsigned long)p;
+	count += write(fd, "0x", 2);
+	count += ft_puthex(fd, point, format);
 	return (count);
 }
-

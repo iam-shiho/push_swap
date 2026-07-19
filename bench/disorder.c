@@ -6,12 +6,11 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/03 17:32:25 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/17 22:13:14 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/19 16:06:09 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 // disoderを計算して0.00~1までの数字を作成 + 構造体に書き込む
 void	compute_disorder(t_num **stack_a, t_bench **bench)
@@ -50,7 +49,7 @@ void	print_disorder(double dis)
 	dis = dis * 10000;
 	tmp = ft_itoa((int)dis);
 	i = ft_strlen(tmp);
-	ft_printf("%d.%c%c%%\n", num, tmp[i - 3], tmp[i - 2]); //\0も含まれる
+	ft_dprintf(2, "%d.%c%c%%\n", num, tmp[i - 3], tmp[i - 2]); //\0も含まれる
 	free(tmp);
 }
 
@@ -64,9 +63,9 @@ void	print_disorder(double dis)
 void	algo_class(double dis)
 {
 	if (dis < 0.2)
-		ft_printf("O(n²)\n");
+		ft_dprintf(2, "O(n²)\n");
 	else if (0.2 <= dis < 0.5)
-		ft_printf("O(n√n)\n");
+		ft_dprintf(2, "O(n√n)\n");
 	else if (dis >= 0.5)
-		ft_printf("O(n log n)\n");
+		ft_dprintf(2, "O(n log n)\n");
 }

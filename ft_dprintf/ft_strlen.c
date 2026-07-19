@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hex.c                                              :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/04 15:45:14 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/09 20:56:18 by swaragay         ###   ########.fr       */
+/*   Created: 2026/07/09 15:37:47 by swaragay          #+#    #+#             */
+/*   Updated: 2026/07/19 16:01:59 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //#include "push_swap.h"
-#include "ft_printf.h"
+#include "ft_dprintf.h"
 
-int	ft_puthex(unsigned long num, const char *format)
+size_t	ft_strlen(const char *s)
 {
-	int		count;
-	char	res;
+	size_t	count;
 
 	count = 0;
-	if (num >= 16)
-		count += ft_puthex(num / 16, format);
-	num = num % 16;
-	if (num >= 10 && (*format == 'x' || *format == 'p'))
-		res = (num - 10) + 'a';
-	else if (num >= 10 && *format == 'X')
-		res = (num - 10) + 'A';
-	else
-		res = num + '0';
-	count += write(1, &res, 1);
+	while (s[count] != '\0')
+	{
+		count++;
+	}
 	return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 18:09:54 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/10 02:22:49 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/19 16:13:02 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ra(t_num **stack_a, t_bench **bench)
 	if (!stack_a || !*stack_a)
 		return ;
 	lst_pushup(**stack_a);
-	ft_printf("ra\n");
+	ft_dprintf(1, "ra\n");
 	++(*bench)->ra;
 	++(*bench)->total_ops;
 }
@@ -27,7 +27,7 @@ void	rb(t_num **stack_b, t_bench **bench)
 	if (!stack_b || !*stack_b)
 		return ;
 	lst_pushup(**stack_b);
-	ft_printf("rb\n");
+	ft_dprintf(1, "rb\n");
 	++(*bench)->rb;
 	++(*bench)->total_ops;
 }
@@ -38,7 +38,7 @@ void	rr(t_num **stack_a, t_num **stack_b, t_bench **bench)
 		return ;
 	lst_pushup(**stack_a);
 	lst_pushup(**stack_b);
-	ft_printf("rr\n");
+	ft_dprintf(1, "rr\n");
 	++(*bench)->rr;
 	++(*bench)->total_ops;
 }
