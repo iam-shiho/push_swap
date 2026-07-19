@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 07:33:11 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/19 19:54:35 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/19 21:49:36 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	simple(t_num **stack_a, t_num **stack_b, t_num **bench)
 				min = *stack_a;
 			stack_a = (*stack_a)->next;
 		}
-		move_top(*stack_a, min, *bench); //先頭にminを持っていく
-		pb(*stack_a, *stack_b, *bench);  // stack_bに入れ込む
+		move_top(stack_a, min, bench); //先頭にminを持っていく
+		pb(stack_a, stack_b, bench);  // stack_bに入れ込む
 	}
 	while (*stack_b) // stack_bのものを移行してくる
-		pa(*stack_a, *stack_b, *bench);
+		pa(stack_a, stack_b, bench);
 }
 
 //前から何番目かの番号をつける 一番最初に計算して-1していくのでもいい
@@ -41,7 +41,7 @@ int	put_index(t_num **stack_a)
 	int	i;
 
 	i = 1;
-	while (*stack_a)
+	while (stack_a)
 	{
 		(*stack_a)->index = i;
 		++i;
@@ -57,12 +57,12 @@ void	move_top(t_num **stack_a, t_num *min, t_num **bench)
 	int	max;
 
 	i = 0;
-	max = put_index(*stack_a);
+	max = put_index(stack_a);
 	if (min->index > max / 2)
 	{
 		while (min->index + i > max + 1)
 		{
-			rra(*stack_a, *bench);
+			rra(stack_a, bench);
 			++i;
 		}
 	}
@@ -70,7 +70,7 @@ void	move_top(t_num **stack_a, t_num *min, t_num **bench)
 	{
 		while (min->index > i)
 		{
-			ra(*stack_a, *bench);
+			ra(stack_a, bench);
 			++i;
 		}
 	}

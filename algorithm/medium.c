@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 07:33:08 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/19 19:54:29 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/19 21:50:01 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	medium(t_num **stack_a, t_num **stack_b, t_num **bench)
 
 	i = 0;
 	j = 0;
-	move_b(*stack_a, *stack_b, *bench);
+	move_b(stack_a, stack_b, bench);
 	while (*stack_b) //最大値を見つけてaに移動させる
 	{
 		while (*stack_b) //最大値を見つけてaに移動
@@ -29,8 +29,8 @@ void	medium(t_num **stack_a, t_num **stack_b, t_num **bench)
 				max = *stack_a;
 			stack_a = (*stack_a)->next;
 		}
-		move_top(*stack_a, max, *bench);
-		pa(*stack_a, *stack_b, *bench);
+		move_top(stack_a, max, bench);
+		pa(stack_a, stack_b, bench);
 	}
 }
 
@@ -66,15 +66,15 @@ void	move_b(t_num **stack_a, t_num **stack_b, t_num **bench)
 	{
 		while (*stack_a) // sizeごとにその中の数字を探して探索する
 		{
-			if ((*stack_a)->value < compute_chunksize(*stack_a) * i)
+			if ((*stack_a)->value < compute_chunksize(stack_a) * i)
 			{
-				pb(*stack_a, *stack_b, *bench);
+				pb(stack_a, stack_b, bench);
 				if (j % 2 == 0)
-					rb(*stack_b, *bench);
+					rb(stack_b, bench);
 				++j;
 			}
 			else
-				ra(*stack_a, *bench);
+				ra(stack_a, bench);
 		}
 		++i;
 	}

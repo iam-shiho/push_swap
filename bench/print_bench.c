@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 02:27:34 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/19 19:55:13 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/19 21:30:04 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_bench(t_bench *bench)
 		ft_dprintf(2, "[bench] strategy: Medium / O(n√n)\n");
 	else if (bench->strategy == '3')
 		ft_dprintf(2, "[bench] strategy: Complex / O(n log n)\n");
-	else if (bench->strategy == '4')
+	else if (bench->strategy == '0')
 	{
 		ft_dprintf(2, "[bench] strategy: Adaptive / ");
 		algo_class(bench->disorder);
