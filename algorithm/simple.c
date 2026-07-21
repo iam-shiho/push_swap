@@ -6,7 +6,7 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 07:33:11 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/21 10:15:27 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/21 14:10:47 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	put_index(t_num **stack_a)
 	t_num	*current;
 
 	current = *stack_a;
-	i = 1;
+	i = 0;
 	while (current)
 	{
 		current->index = i;
@@ -64,7 +64,7 @@ void	move_top(t_num **stack_a, t_num *min, t_bench **bench)
 	max = put_index(stack_a);
 	if (min->index > max / 2)
 	{
-		while (min->index + i > max + 1)
+		while (min->index + i > max)
 		{
 			rra(stack_a, bench);
 			++i;
