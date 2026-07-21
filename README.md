@@ -5,14 +5,14 @@
 
 ## Description
 `push_swap` は、2つのスタック（`a` と `b`）と制限された一連の操作命令（`sa`, `pb`, `ra` など）のみを使用し、ランダムに与えられた整数列を最小の手数（操作回数）でソートするプログラムです。
-本プロジェクトでは、アルゴリズムの時間・空間複雑度（Big-O）の深い理解と、与えられた入力データの「無秩序度（Disorder Metric）」に応じて最適なアルゴリズムを動的に選択する**適応型アルゴリズム（Adaptive Algorithm）**の実装を目的としています。
+与えられた入力データの「無秩序度（Disorder Metric）」に応じて最適なアルゴリズムを動的に選択する
 
 ---
 
 ## Instructions
 
 ### コンパイル
-プロジェクトのビルドには `cc` と `Makefile` を使用します。
+プロジェクトのビルドには `cc` と `-Werror -Wall -Wextra` を使用します。
 ```bash
 # push_swapの作成
 make
@@ -62,8 +62,212 @@ $ cat bench.txt
 ---
 
 ## Technical Choices & Algorithms
-//ttatsuno パースの部分の解説
+
 ### パース
+# パースの目的
+
+パース処理の目的は、コマンドライン引数として渡された文字列を検査し、ソート処理で使用できる形に変換することである。
+
+本プログラムでは、入力された整数を双方向リストの `stack_a` に保存し、アルゴリズムの選択とベンチマーク表示の有無を `t_config` に保存する。不正な入力を検出した場合は、ソートを開始せずエラーとして終了する。
+
+## 処理に必要なこと
+
+パースでは、次の処理を行う。
+
+- 引数がない場合は何も表示せず終了する。
+- `"3 2 1"` と `3 2 1` の両方の入力形式を受け付ける。
+- 数値の先頭にある `+` または `-` を1文字だけ許可する。
+- 符号の後に数字が1文字以上あることを確認する。
+- 数値以外の文字が含まれていないことを確認する。
+- 変換結果が `int` の範囲内であることを確認する。
+- 同じ数値が重複していないことを確認する。
+- 入力順を保ったまま、各数値を `stack_a` の末尾に追加する。
+- オプションを判定し、選択された設定を `t_config` に保存する。
+- 戦略指定がない場合は `--adaptive` を選択する。
+- 不正な入力やメモリ確保の失敗があれば、エラーを呼び出し側へ伝える。
+
+受け付けるオプションは次のとおりである。
+
+| オプション | 内容 |
+|---|---|
+| `--simple` | O(n²) のアルゴリズムを使用する |
+| `--medium` | O(n√n) のアルゴリズムを使用する |
+| `--complex` | O(n log n) のアルゴリズムを使用する |
+| `--adaptive` | disorderに応じてアルゴリズムを選択する |
+| `--bench` | ソート後にベンチマーク情報を標準エラー出力へ表示する |
+
+複数の戦略を同時に指定した場合や、定義されていないオプションを指定した場合はエラーとする。`--bench` は戦略指定と併用できる。
+
+## パースで使用する関数一覧
+
+パース処理と、その呼び出し・後始末に使用する関数は次のとおりである。
+
+```c
+/* main.c */
+int		main(int argc, char **argv);
+void	init_program(t_config *config, t_bench *bench);
+int		run_parse(int argc, char **argv, t_config *config,
+			t_num **stack_a);
+int		alg(t_num **stack_a, t_num **stack_b, t_config *config,
+			t_bench *bench);
+void	print_bench(t_bench *bench);
+
+/* parse.c */
+int		ft_parse(int argc, char **argv, t_config *config,
+			t_num **stack_a);
+int		save_option(char *arg, t_config *config);
+int		process_numeric_argument(char *arg_str, t_num **stack_a);
+char	**split_and_free(char *arg_str);
+
+/* parse_util.c */
+long	ft_atol(const char *nptr);
+int		is_valid_num_str(char *str);
+t_num	*ft_mk_newlst(long nb);
+int		is_duplicate(t_num *stack, int value);
+void	add_node_back(t_num **stack, t_num *new_node);
+
+/* free_objects.c */
+void	free_stack(t_num **stack);
+int		free_twostacks(t_num **stack_a, t_num **stack_b, int status);
+int		free_split(char **split, int status);
+```
+
+## 処理のフロー
+
+1. `main` が、初期化した `config` と `stack_a` を `run_parse` に渡す。
+2. `run_parse` が `ft_parse` を呼び出す。
+3. `ft_parse` が `argv[1]` から順番に引数を確認する。
+4. `--` から始まる引数は、`save_option` でオプションとして処理する。
+5. それ以外の引数は、`process_numeric_argument` で数値として処理する。
+6. 数値の引数を `split_and_free` で空白ごとに分割する。
+7. 分割した各文字列について、形式、範囲、重複を確認する。
+8. 正常な数値から新しいノードを作り、`stack_a` の末尾へ追加する。
+9. すべての引数を処理した後、戦略指定がなければ adaptive を設定する。
+10. 途中でエラーが発生した場合、`run_parse` が標準エラー出力へ `Error\n` を出力し、`main` が作成済みのスタックを解放する。
+
+## 各関数の働き
+
+### `run_parse`
+
+`main` と実際のパース処理をつなぐ関数である。`ft_parse` がエラーを返した場合は、標準エラー出力へ `Error\n` を出力し、失敗を `main` に伝える。
+
+この関数では `stack_a` を解放しない。途中まで作成されたスタックの解放は、所有者である `main` が担当する。
+
+### `ft_parse`
+
+パース全体を管理する関数である。`argv` を先頭から確認し、オプションなら `save_option`、数値なら `process_numeric_argument` を呼び出す。
+
+すべての引数を正常に処理した場合は `0`、いずれかの処理で失敗した場合は `-1` を返す。また、戦略が指定されていなければ adaptive を設定する。
+
+### `save_option`
+
+オプション文字列を判定し、その内容を `t_config` に保存する。
+
+- 戦略指定は `strategy_mode` に保存する。
+- `--bench` の指定は `bench_flag` に保存する。
+- 複数の戦略指定や未知のオプションはエラーとする。
+
+### `process_numeric_argument`
+
+1つの引数に含まれる数値を処理する中心的な関数である。
+
+引数を空白で分割した後、各文字列に対して次の処理を行う。
+
+1. `is_valid_num_str` で文字列の形式を確認する。
+2. `ft_atol` で文字列を数値へ変換する。
+3. 変換結果が `INT_MIN` 以上 `INT_MAX` 以下であることを確認する。
+4. `is_duplicate` で重複を確認する。
+5. `ft_mk_newlst` で新しいノードを作成する。
+6. `add_node_back` でノードを `stack_a` の末尾へ追加する。
+
+この関数が確保した分割配列は、成功時と失敗時のどちらでも `free_split` によって解放する。
+
+### `split_and_free`
+
+`ft_split` を使い、1つの引数を空白ごとに分割する。
+
+分割に失敗した場合は `NULL` を返す。分割結果が空だった場合は、その配列を解放してから `NULL` を返す。成功した場合は分割済みの配列を返し、その後の解放は `process_numeric_argument` が担当する。
+
+### `is_valid_num_str`
+
+文字列が整数として正しい形式かを確認する。
+
+先頭の `+` または `-` は許可するが、符号だけの文字列や、途中に符号・数字以外の文字を含む文字列はエラーとする。
+
+例：
+
+| 入力 | 判定 |
+|---|---|
+| `42` | 有効 |
+| `-42` | 有効 |
+| `+42` | 有効 |
+| `+` | 無効 |
+| `12a` | 無効 |
+| `1-2` | 無効 |
+
+### `ft_atol`
+
+数字の文字列を `long` 型の数値へ変換する。変換後の値は `process_numeric_argument` で `int` の範囲内か確認する。
+
+非常に長い数値を扱う場合は、`long` 自体の範囲を超える前にオーバーフローを検出する必要がある。
+
+### `ft_mk_newlst`
+
+新しい `t_num` ノードを確保して初期化する。数値を `value` に保存し、リスト接続用の `next` と `prev` を `NULL` に設定する。
+
+メモリ確保に失敗した場合は `NULL` を返す。
+
+### `is_duplicate`
+
+作成済みの `stack_a` を先頭から走査し、同じ値がすでに保存されていないか確認する。
+
+重複が見つかった場合は `1`、見つからなかった場合は `0` を返す。
+
+### `add_node_back`
+
+新しいノードを `stack_a` の末尾へ追加する。末尾に追加することで、コマンドラインに入力された数値の順番を維持する。
+
+先頭ノードを追加するときは `*stack` を更新する必要があるため、`t_num **` を受け取る。
+
+### `free_split`
+
+`ft_split` が確保した各文字列を順番に解放し、最後に配列本体を解放する。
+
+受け取った `status` をそのまま返すため、次のように解放と `return` をまとめて記述できる。
+
+```c
+return (free_split(split_arr, -1));
+```
+
+### `free_stack`
+
+`stack_a` の全ノードを解放し、最後に先頭ポインタを `NULL` にする。
+
+パース中にエラーが発生した場合でも、それまでにリストへ追加されたノードは `main` からこの関数を呼び出して解放する。
+
+## メモリ管理の方針
+
+パース処理では、メモリの所有者を次のように決めている。
+
+| 確保したデータ | 解放する場所 |
+|--------------|-----------|
+| `ft_split` が作成した分割配列 | `process_numeric_argument` |
+| まだリストへ追加していないノード | ノードを作成した処理内 |
+| `stack_a` に追加済みのノード | `main` から呼び出す `free_stack` |
+
+関数内でのみ使用する一時データはその関数内で解放し、関数を抜けた後も使用する `stack_a` は呼び出し側でまとめて解放する。この方針により、解放漏れと二重解放を防ぐ。
+
+## 戻り値
+
+| 関数 | 成功 | 失敗 |
+|---|---:|---:|
+| `ft_parse` | `0` | `-1` |
+| `save_option` | `0` | `-1` |
+| `process_numeric_argument` | `0` | `-1` |
+| `run_parse` | `0` | `1` |
+
+パース内部では `0` と `-1` を使い、`main` に返す終了ステータスでは `0` と `1` を使い分けている。
+
 
 
 ### 座標圧縮
@@ -90,8 +294,8 @@ $ cat bench.txt
 
 | 関数名 | 説明 |
 |---|---|
-| **pa** | `stack_a`の先頭を`stack_b`の先頭に移動する |
-| **pb** | `stack_b`の先頭を`stack_a`の先頭に移動する |
+| **pa** | `stack_b`の先頭を`stack_a`の先頭に移動する |
+| **pb** | `stack_a`の先頭を`stack_b`の先頭に移動する |
 | **ra** |　`stack_a` の全要素を上に1つズラす（先頭は末尾へ) |
 | **rb** |  `stack_b` の全要素を上に1つズラす（先頭は末尾へ） |
 | **rr** | raとrbを同時に行う |

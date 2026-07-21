@@ -1,25 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/19 19:27:05 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/21 15:18:48 by swaragay         ###   ########.fr       */
+/*   Created: 2026/04/29 17:53:03 by ttatsuno          #+#    #+#             */
+/*   Updated: 2026/07/21 16:30:46 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-	size_t	i;
+	unsigned char	*ptr;
+	size_t			i;
 
+	ptr = (unsigned char *)s;
 	i = 0;
-	if (n == 0)
-		return (0);
-	while (s1[i] != '\0' && s2[i] != '\0' && (s1[i] == s2[i]) && i < n - 1)
+	while (i < n)
+	{
+		ptr[i] = 0;
 		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	}
 }
+
+// #include <stdio.h>
+//
+// int	main(void)
+// {
+// 	char	str1[] = "Hello 42!";
+// 	char	str2[] = "Hello 42!";
+//
+// 	bzero(str1, 2);
+// 	ft_bzero(str2, 2);
+//
+// 	printf("printf: %d, %d, %d...\n", str1[0], str1[1], str1[2]);
+// 	printf("ft_printf: %d, %d, %d...\n", str2[0], str2[1], str2[2]);
+// 	return (0);
+// }

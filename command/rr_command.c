@@ -6,39 +6,40 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/07 18:24:10 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/19 22:33:59 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/21 17:58:14 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	rra(t_num **stack_a, t_bench **bench)
+void	rra(t_num **stack_a, t_bench *bench)
 {
-	if (!stack_a || !*stack_a)
+	if (!stack_a || !*stack_a || (*stack_a)->next == NULL)
 		return ;
 	lst_pushdown(stack_a);
 	ft_dprintf(1, "rra\n");
-	++(*bench)->rra;
-	++(*bench)->total_ops;
+	++bench->rra;
+	++bench->total_ops;
 }
 
-void	rrb(t_num **stack_b, t_bench **bench)
+void	rrb(t_num **stack_b, t_bench *bench)
 {
-	if (!stack_b || !*stack_b)
+	if (!stack_b || !*stack_b || (*stack_b)->next == NULL)
 		return ;
 	lst_pushdown(stack_b);
 	ft_dprintf(1, "rrb\n");
-	++(*bench)->rrb;
-	++(*bench)->total_ops;
+	++bench->rrb;
+	++bench->total_ops;
 }
 
-void	rrr(t_num **stack_a, t_num **stack_b, t_bench **bench)
+void	rrr(t_num **stack_a, t_num **stack_b, t_bench *bench)
 {
-	if (!stack_a || !stack_b || !*stack_a || !*stack_b)
+	if (!stack_a || !stack_b || !*stack_a || !*stack_b
+		|| (*stack_a)->next == NULL || (*stack_b)->next == NULL)
 		return ;
 	lst_pushdown(stack_a);
 	lst_pushdown(stack_b);
 	ft_dprintf(1, "rrr\n");
-	++(*bench)->rrr;
-	++(*bench)->total_ops;
+	++bench->rrr;
+	++bench->total_ops;
 }

@@ -6,13 +6,12 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 02:27:34 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/19 21:30:04 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/21 15:16:05 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-// benchの中身をプリントする関数 --benchが来たときに稼働するようにする
 void	print_bench(t_bench *bench)
 {
 	ft_dprintf(2, "[bench] disorder: ");

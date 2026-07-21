@@ -3,45 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   parse_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ttatsuno <ttatsuno@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/19 19:11:42 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/19 19:59:38 by swaragay         ###   ########.fr       */
+/*   Created: 2026/07/16 08:53:48 by ttatsuno          #+#    #+#             */
+/*   Updated: 2026/07/21 16:57:57 by ttatsuno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	free_stack(t_num **stack)
+long	ft_atol(const char *nptr)
 {
-	t_num	*tmp;
-	t_num	*current;
+	int		sign;
+	long	result;
+	long	limit;
 
-	if (!stack || !*stack)
-		return ;
-	current = *stack;
-	while (current)
+	sign = 1;
+	result = 0;
+	if (*nptr == '+' || *nptr == '-')
 	{
-		tmp = current->next;
-		free(current);
-		current = tmp;
+		if (*nptr == '-')
+			sign = -1;
+		nptr++;
 	}
-	*stack = NULL;
+	limit = INT_MAX;
+	if (sign < 0)
+		limit = -(long)INT_MIN;
+	while (*nptr >= '0' && *nptr <= '9')
+	{
+		if (result > (limit - (*nptr - '0')) / 10)
+			return ((limit + 1) * sign);
+		result = result * 10 + (*nptr - '0');
+		nptr++;
+	}
+	return (result * sign);
 }
 
-void	free_split(char **split)
+int	is_valid_num_str(char *str)
 {
 	int	i;
 
-	if (!split)
-		return ;
+	if (!str || str[0] == '\0')
+		return (0);
 	i = 0;
-	while (split[i])
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	if (str[i] == '\0')
+		return (0);
+	while (str[i] != '\0')
 	{
-		free(split[i]);
+		if (!ft_isdigit(str[i]))
+			return (0);
 		i++;
 	}
-	free(split);
+	return (1);
 }
 
 t_num	*ft_mk_newlst(long nb)

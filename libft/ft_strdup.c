@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   adaptive.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: ttatsuno <ttatsuno@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/10 07:33:03 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/21 16:31:37 by swaragay         ###   ########.fr       */
+/*   Created: 2026/05/15 19:42:16 by ttatsuno          #+#    #+#             */
+/*   Updated: 2026/07/21 16:40:36 by ttatsuno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	adaptive(t_num **stack_a, t_num **stack_b, t_bench *bench)
+char	*ft_strdup(const char *s1)
 {
-	if (bench->disorder < 0.2)
-		simple(stack_a, stack_b, bench);
-	else if (0.2 <= bench->disorder < 0.5)
-		medium(stack_a, stack_b, bench);
-	else if (bench->disorder >= 0.5)
-		complex(stack_a, stack_b, bench);
+	char	*dest;
+	size_t	i;
+
+	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (dest == NULL)
+		return (NULL);
+	i = 0;
+	while (s1[i] != '\0')
+	{
+		dest[i] = s1[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

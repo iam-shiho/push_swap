@@ -6,13 +6,13 @@
 /*   By: swaragay <swaragay@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/10 07:33:06 by swaragay          #+#    #+#             */
-/*   Updated: 2026/07/19 22:03:41 by swaragay         ###   ########.fr       */
+/*   Updated: 2026/07/21 16:31:04 by swaragay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	complex(t_num **stack_a, t_num **stack_b, t_bench **bench)
+void	complex(t_num **stack_a, t_num **stack_b, t_bench *bench)
 {
 	int	i;
 	int	j;
@@ -21,12 +21,11 @@ void	complex(t_num **stack_a, t_num **stack_b, t_bench **bench)
 	i = 0;
 	j = 0;
 	size = count_bitsize(ft_lstsize(*stack_a));
-	while (*stack_a || i < size) //桁数分回る
+	while (*stack_a || i < size)
 	{
-		while (*stack_a || j < size) // bitが0のときにｂに移動させる　
+		while (*stack_a || j < size)
 		{
 			if ((((*stack_a)->min_index >> j) & 1) == 0)
-				// bitをi分シフトする→型抜く→それが０だったばあいbにいく
 				pb(stack_a, stack_b, bench);
 			else
 				ra(stack_a, bench);
@@ -43,7 +42,7 @@ int	count_bitsize(int num)
 	int	i;
 
 	i = 0;
-	while (num) //２進数の桁数を数える
+	while (num)
 	{
 		num = num / 2;
 		++i;
